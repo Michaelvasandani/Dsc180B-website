@@ -1,1 +1,1 @@
-[Website Link](https://michaelvasandani.github.io/Dsc180B-website/)
+**Website:** [https://michaelvasandani.github.io/Dsc180B-website/]
