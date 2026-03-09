@@ -247,6 +247,7 @@ footer strong { color: rgba(255,255,255,0.75); }
 @media (max-width: 900px) {
   .rq-grid, .conclusion-grid { grid-template-columns: 1fr; }
   .threeRs { grid-template-columns: 1fr; }
+  .controls-grid { grid-template-columns: 1fr !important; }
   .monitoring-flow { grid-template-columns: 1fr; gap: 0.5rem; }
   .flow-arrow { transform: rotate(90deg); }
   .pipeline { flex-direction: column; }
@@ -465,6 +466,35 @@ footer strong { color: rgba(255,255,255,0.75); }
   <div class="callout reveal">
     <div class="callout-label">Key Finding</div>
     <p>Despite weak individual signals, the presence of significant mice above the expected false-positive rate suggests underlying rhythmic structure exists within the behavioral data, motivating group-level analysis.</p>
+  </div>
+
+  <div class="reveal">
+    <h3>Pipeline Validation: Positive &amp; Negative Controls</h3>
+    <p>Before interpreting population-level results, we validated that the analysis pipeline reliably distinguishes genuine estrous-linked signals from noise using three control conditions.</p>
+  </div>
+
+  <!-- Control cards -->
+  <div class="controls-grid reveal" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin: 2rem 0;">
+    <div style="padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--warm);">
+      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.5rem;">Negative Control 1</div>
+      <h4 style="font-family: var(--sans); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">De-Aligned Females</h4>
+      <p style="font-size: 0.84rem; line-height: 1.55; color: var(--text-soft); margin: 0; text-indent: 0 !important;">When estrus timing was artificially disrupted by de-aligning female cycles, the expected suppression of ultradian power on estrus-labeled days disappeared. Ultradian activity fluctuated without a consistent relationship to the assigned estrus labels, confirming the signal depends on correct temporal alignment rather than random locomotor variation.</p>
+    </div>
+    <div style="padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--warm);">
+      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm); margin-bottom: 0.5rem;">Negative Control 2</div>
+      <h4 style="font-family: var(--sans); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Male Mice</h4>
+      <p style="font-size: 0.84rem; line-height: 1.55; color: var(--text-soft); margin: 0; text-indent: 0 !important;">Male mice, which do not experience estrous cycles, showed no evidence of periodic ultradian suppression or consistent rhythmic structure corresponding to estrus. Autocorrelation and rhythmicity analyses did not reveal a significant ~4-day cyclic pattern, ruling out non-biological artifacts in the pipeline.</p>
+    </div>
+    <div style="padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--teal);">
+      <div style="font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem;">Positive Control</div>
+      <h4 style="font-family: var(--sans); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.5rem;">Aligned Females (Smarr et al.)</h4>
+      <p style="font-size: 0.84rem; line-height: 1.55; color: var(--text-soft); margin: 0; text-indent: 0 !important;">Using the established approach from Smarr et al., aligned female datasets showed ultradian locomotor power consistently decreasing on estrus days with a recurring ~4-day pattern. This periodic structure was detectable through rhythmicity analyses and aligned with known reproductive timing.</p>
+    </div>
+  </div>
+
+  <div class="callout reveal">
+    <div class="callout-label">Validation Summary</div>
+    <p>Together, the positive and negative control results demonstrate that the analysis pipeline reliably detects genuine estrus-associated behavioral rhythms while avoiding false cyclic signals when estrus timing is absent or disrupted. This gives us confidence that cyclicity detected in the Morph2REP data reflects real physiological structure.</p>
   </div>
 
   <div class="reveal">
