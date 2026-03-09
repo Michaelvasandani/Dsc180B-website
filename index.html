@@ -31,8 +31,6 @@ body {
   font-family: var(--serif); background: var(--bg); color: var(--text);
   font-size: 18px; line-height: 1.75; -webkit-font-smoothing: antialiased;
 }
-
-/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(245,243,238,0.88); backdrop-filter: blur(16px);
@@ -54,8 +52,6 @@ nav.hidden { transform: translateY(-100%); }
   transition: color 0.2s; font-weight: 500;
 }
 .nav-links a:hover { color: var(--accent); }
-
-/* HERO */
 .hero {
   min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
   padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
@@ -116,8 +112,6 @@ nav.hidden { transform: translateY(-100%); }
   display: block; width: 1.5px; height: 40px;
   background: linear-gradient(to bottom, var(--accent), transparent); margin: 0 auto;
 }
-
-/* SECTIONS */
 section { max-width: 840px; margin: 0 auto; padding: 5rem 2rem; }
 section.wide { max-width: 1100px; }
 .section-num {
@@ -128,12 +122,9 @@ h2 { font-family: var(--display); font-size: 2.3rem; font-weight: 700; line-heig
 h3 { font-family: var(--display); font-size: 1.55rem; font-weight: 700; line-height: 1.3; margin-top: 3rem; margin-bottom: 1rem; }
 p { margin-bottom: 1.25rem; }
 p + p { text-indent: 1.5em; }
-
 .divider { max-width: 840px; margin: 0 auto; padding: 0 2rem; }
 .divider.wide { max-width: 1100px; }
 .divider hr { border: none; height: 1px; background: linear-gradient(to right, transparent, var(--border), transparent); }
-
-/* CALLOUTS */
 .callout { background: var(--teal-light); border-left: 4px solid var(--teal); padding: 1.75rem 2.25rem; margin: 2.5rem 0; }
 .callout.warn { background: var(--warm-bg); border-left-color: var(--warm); }
 .callout.info { background: var(--accent-bg); border-left-color: var(--accent); }
@@ -142,22 +133,16 @@ p + p { text-indent: 1.5em; }
 .callout.warn .callout-label { color: var(--warm); }
 .callout.info .callout-label { color: var(--accent); }
 .callout p { font-size: 0.95rem; margin: 0; text-indent: 0 !important; }
-
-/* HIGHLIGHT CARDS */
 .highlight-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin: 3rem 0; }
 .highlight-card { background: var(--card); border: 1px solid var(--border); padding: 1.5rem; transition: transform 0.25s, box-shadow 0.25s; }
 .highlight-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
 .highlight-card .num { font-family: var(--display); font-size: 2.2rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; }
 .highlight-card .label { font-family: var(--sans); font-size: 0.76rem; color: var(--text-soft); line-height: 1.45; }
-
-/* RQ CARDS */
 .rq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
 .rq-card { padding: 1.75rem; border: 1px solid var(--border); background: var(--card); position: relative; }
 .rq-card::before { content: attr(data-rq); font-family: var(--display); font-size: 3rem; font-weight: 900; color: rgba(46,107,158,0.07); position: absolute; top: 0.5rem; right: 1rem; line-height: 1; }
 .rq-card h4 { font-family: var(--sans); font-weight: 700; font-size: 0.92rem; margin-bottom: 0.65rem; color: var(--accent); }
 .rq-card p { font-size: 0.88rem; line-height: 1.6; color: var(--text-soft); text-indent: 0 !important; margin: 0; }
-
-/* MONITORING DIAGRAM */
 .monitoring-diagram { background: var(--card); border: 1px solid var(--border); padding: 2.5rem; margin: 2.5rem 0; }
 .monitoring-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 0; margin: 1.5rem 0; }
 .monitor-node { background: var(--bg); border: 2px solid var(--accent); padding: 1.25rem; text-align: center; border-radius: 8px; transition: transform 0.2s, background 0.2s; }
@@ -171,14 +156,40 @@ p + p { text-indent: 1.5em; }
 .treatment-badge.vehicle { background: #d4edda; color: #155724; }
 .treatment-badge.dose5 { background: #fff3cd; color: #856404; }
 .treatment-badge.dose25 { background: #f8d7da; color: #721c24; }
-
-/* FIGURE CONTAINERS */
 .figure-block {
   background: var(--card); border: 1px solid var(--border);
   padding: 2rem; margin: 2.5rem 0; text-align: center;
 }
-.figure-block img {
-  max-width: 100%; height: auto; display: block; margin: 0 auto;
+.figure-block img { max-width: 100%; height: auto; display: block; margin: 0 auto; cursor: zoom-in; transition: opacity 0.2s; }
+.figure-block img:hover { opacity: 0.85; }
+/* LIGHTBOX */
+.lightbox-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(20,18,14,0.88); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  cursor: zoom-out; padding: 2rem;
+}
+.lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+.lightbox-overlay img {
+  max-width: 95vw; max-height: 90vh; object-fit: contain;
+  border-radius: 4px; box-shadow: 0 20px 80px rgba(0,0,0,0.4);
+  transform: scale(0.92); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lightbox-overlay.active img { transform: scale(1); }
+.lightbox-close {
+  position: absolute; top: 1.5rem; right: 2rem;
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
+  color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 4px;
+  padding: 0.4rem 1rem; cursor: pointer; transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.06em;
+}
+.lightbox-close:hover { color: #fff; background: rgba(255,255,255,0.2); }
+.lightbox-caption {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--sans); font-size: 0.75rem; color: rgba(255,255,255,0.5);
+  text-align: center; max-width: 600px;
 }
 .figure-caption {
   font-family: var(--sans); font-size: 0.8rem; color: var(--text-soft);
@@ -191,8 +202,6 @@ p + p { text-indent: 1.5em; }
 }
 .figure-caption.warm strong { color: var(--warm); }
 .figure-caption.teal strong { color: var(--teal); }
-
-/* PIPELINE */
 .pipeline { display: flex; gap: 0; margin: 2.5rem 0; overflow-x: auto; }
 .pipeline-step { flex: 1; min-width: 150px; padding: 1.25rem 1rem; background: var(--card); border: 1px solid var(--border); text-align: center; transition: background 0.2s; position: relative; }
 .pipeline-step:not(:last-child)::after { content: '\2192'; position: absolute; right: -0.6rem; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--accent); z-index: 2; background: var(--bg); width: 1.2rem; text-align: center; }
@@ -200,14 +209,10 @@ p + p { text-indent: 1.5em; }
 .pipeline-step .step-num { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 0.4rem; }
 .pipeline-step .step-title { font-family: var(--sans); font-weight: 700; font-size: 0.8rem; margin-bottom: 0.25rem; }
 .pipeline-step .step-desc { font-family: var(--sans); font-size: 0.68rem; color: var(--text-soft); line-height: 1.4; }
-
-/* ML SUMMARY */
 .ml-summary { background: var(--card); border: 1px solid var(--border); padding: 2rem; margin: 2rem 0; }
 .ml-summary h4 { font-family: var(--sans); font-weight: 700; font-size: 0.88rem; margin-bottom: 0.75rem; }
 .ml-summary p { font-size: 0.88rem; color: var(--text-soft); text-indent: 0 !important; }
 .ml-summary .best-model { font-family: var(--mono); font-size: 0.82rem; font-weight: 500; color: var(--accent); margin-top: 0.5rem; }
-
-/* CONCLUSION GRID */
 .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
 .conclusion-card { padding: 1.5rem; background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--accent); }
 .conclusion-card.warn-top { border-top-color: var(--warm); }
@@ -215,31 +220,30 @@ p + p { text-indent: 1.5em; }
 .conclusion-card.purple-top { border-top-color: var(--purple); }
 .conclusion-card h4 { font-family: var(--sans); font-weight: 700; font-size: 0.82rem; margin-bottom: 0.5rem; }
 .conclusion-card p { font-size: 0.85rem; line-height: 1.55; color: var(--text-soft); margin: 0; text-indent: 0 !important; }
-
-/* 3RS */
 .threeRs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0; }
 .threeR-card { padding: 1.5rem; background: var(--card); border: 1px solid var(--border); text-align: center; }
 .threeR-card .r-letter { font-family: var(--display); font-size: 2.5rem; font-weight: 900; color: var(--teal); line-height: 1; margin-bottom: 0.4rem; }
 .threeR-card .r-word { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.4rem; }
 .threeR-card p { font-family: var(--sans); font-size: 0.76rem; color: var(--text-soft); line-height: 1.5; margin: 0; text-indent: 0 !important; }
-
-/* FOOTER */
 footer { background: var(--text); color: rgba(255,255,255,0.5); padding: 3rem 2rem; text-align: center; font-family: var(--sans); font-size: 0.76rem; }
 footer strong { color: rgba(255,255,255,0.75); }
-
-/* ANIMATIONS */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
-
-/* TOC */
 .toc-float { position: fixed; left: 2rem; top: 50%; transform: translateY(-50%); z-index: 50; display: flex; flex-direction: column; gap: 0.6rem; }
 .toc-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background 0.3s, transform 0.3s; cursor: pointer; position: relative; }
 .toc-dot.active { background: var(--accent); transform: scale(1.4); }
 .toc-dot::after { content: attr(data-label); position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); font-family: var(--sans); font-size: 0.66rem; color: var(--text-soft); white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
 .toc-dot:hover::after { opacity: 1; }
-
+/* Autocorrelation table */
+.autocorr-table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 0.85rem; margin: 1.5rem 0; }
+.autocorr-table th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-align: left; padding: 0.75rem 1rem; border-bottom: 2px solid var(--text); background: var(--card); }
+.autocorr-table td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); }
+.autocorr-table tr:hover { background: rgba(46,107,158,0.03); }
+.pattern-consistent { background: var(--teal-light); color: var(--teal); font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; }
+.pattern-weak { background: #fff3cd; color: #856404; font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; }
+.pattern-flip { background: var(--warm-bg); color: var(--warm); font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; }
 @media (max-width: 900px) {
   .rq-grid, .conclusion-grid { grid-template-columns: 1fr; }
   .threeRs { grid-template-columns: 1fr; }
@@ -283,7 +287,6 @@ footer strong { color: rgba(255,255,255,0.75); }
   <div class="toc-dot" data-label="Conclusion" data-target="conclusion"></div>
 </div>
 
-<!-- ════════════════════ HERO ════════════════════ -->
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-label">Behavioral Neuroscience &middot; Continuous Monitoring &middot; Computational Analysis</div>
@@ -301,7 +304,7 @@ footer strong { color: rgba(255,255,255,0.75); }
   <div class="scroll-cue"><span></span></div>
 </header>
 
-<!-- ════════════════════ PROBLEM ════════════════════ -->
+<!-- PROBLEM -->
 <section id="problem">
   <div class="reveal">
     <div class="section-num">01 &mdash; The Problem</div>
@@ -329,7 +332,7 @@ footer strong { color: rgba(255,255,255,0.75); }
 
 <div class="divider"><hr></div>
 
-<!-- ════════════════════ MONITORING ════════════════════ -->
+<!-- MONITORING -->
 <section id="monitoring" class="wide">
   <div class="reveal">
     <div class="section-num">02 &mdash; Automated Cage Monitoring</div>
@@ -374,7 +377,7 @@ footer strong { color: rgba(255,255,255,0.75); }
 
 <div class="divider wide"><hr></div>
 
-<!-- ════════════════════ MORPHINE EFFECTS ════════════════════ -->
+<!-- MORPHINE EFFECTS -->
 <section id="morphine">
   <div class="reveal">
     <div class="section-num">03 &mdash; Acute Morphine Effects</div>
@@ -382,18 +385,16 @@ footer strong { color: rgba(255,255,255,0.75); }
     <p>On non-dosing days, all treatment groups showed similar, typical low-level activity fluctuations. Following morphine injection, locomotion increased dramatically in a dose-dependent manner, with the strongest response at 25 mg/kg.</p>
   </div>
 
-  <!-- FIGURE 1: Dose Response -->
   <div class="figure-block reveal">
-    <img src="fig_dose_response.png" alt="Baseline behavior vs acute morphine response showing fraction of mice locomoting over hours, comparing No Dose Day and Dose Day across vehicle, 5 mg/kg, and 25 mg/kg groups">
+    <img src="fig_dose_response.png" alt="Baseline behavior vs acute morphine response">
     <div class="figure-caption warm">
       <strong>Figure 1 &mdash; Baseline vs. Acute Morphine Response</strong><br>
       Baseline locomotion shows typical low-level activity fluctuations with no group differences. Following morphine injection (dashed line), locomotion increases dramatically in a dose-dependent manner. The 25 mg/kg group (pink) shows a sharp spike followed by sustained elevated activity, while the 5 mg/kg group (blue) shows moderate elevation. Vehicle controls (yellow) remain unchanged.
     </div>
   </div>
 
-  <!-- FIGURE 4: Response Magnitude -->
   <div class="figure-block reveal">
-    <img src="fig_response_magnitude.png" alt="Box plots showing morphine response magnitude by dose with 5.14x difference, and classification accuracy by dose showing 72.2% for 25 mg/kg">
+    <img src="fig_response_magnitude.png" alt="Response magnitude and prediction accuracy by dose">
     <div class="figure-caption">
       <strong>Figure 2 &mdash; Response Magnitude &amp; Prediction by Dose</strong><br>
       (A) Morphine response magnitude shows a 5.14x difference between low-dose and high-dose groups. The 25 mg/kg group displays substantially greater and more variable locomotor responses. (B) Classification of high vs. low responders achieves 72.2% accuracy for the 25 mg/kg group (well above chance), while the 5 mg/kg group is harder to classify at 27.8%, reflecting lower signal-to-noise at the lower dose.
@@ -405,9 +406,8 @@ footer strong { color: rgba(255,255,255,0.75); }
     <p>Beyond the acute spike in activity, ultradian locomotor signals (1&ndash;3 hour rhythms) were extracted from minute-resolution activity using wavelet analysis and normalized to baseline. In positive control mice, the signal shows a clear repeating ~4-day pattern consistent with the estrous cycle. In Morph2REP mice, rhythmic structure is weaker under vehicle and appears disrupted following high-dose morphine, suggesting attenuation of estrous-timescale behavioral organization.</p>
   </div>
 
-  <!-- FIGURE 2: Estrous Rhythms -->
   <div class="figure-block reveal">
-    <img src="fig_estrous_rhythms.png" alt="Representative mice showing estrous-timescale behavioral rhythms: positive control with clear 4-day cycles, vehicle Rep1 mouse with weaker rhythms, and 25 mg Rep2 mouse with disrupted rhythms after dosing">
+    <img src="fig_estrous_rhythms.png" alt="Representative mice showing estrous-timescale behavioral rhythms">
     <div class="figure-caption teal">
       <strong>Figure 3 &mdash; Representative Estrous-Timescale Behavioral Rhythms</strong><br>
       Ultradian locomotor signals (z_U_1-3h) for three representative mice. <em>Left:</em> Positive control Mouse f7 shows a clear ~4-day repeating pattern (E markers indicate estrous peaks, dashed guides at 4-day intervals). <em>Center:</em> Vehicle Rep1 Mouse 9263 shows weaker but present rhythmic structure; dashed red lines mark dose days. <em>Right:</em> 25 mg Rep2 Mouse 9289 shows disrupted rhythmic structure following morphine exposure, with the signal becoming irregular after dosing events.
@@ -422,11 +422,11 @@ footer strong { color: rgba(255,255,255,0.75); }
 
 <div class="divider"><hr></div>
 
-<!-- ════════════════════ METHODS ════════════════════ -->
+<!-- METHODS -->
 <section id="methods">
   <div class="reveal">
     <div class="section-num">04 &mdash; Analytical Pipeline</div>
-    <h2> Discovering Estrous Rhythms Within Locomotion</h2>
+    <h2>Discovering Estrous Rhythms Within Locomotion</h2>
     <p>To extract physiological rhythms from behavioral data, we applied a multi-stage computational pipeline combining signal processing, probabilistic modeling, and cyclicity testing &mdash; all without requiring invasive estrous labels.</p>
   </div>
 
@@ -452,7 +452,7 @@ footer strong { color: rgba(255,255,255,0.75); }
 
 <div class="divider"><hr></div>
 
-<!-- ════════════════════ ESTROUS ════════════════════ -->
+<!-- ESTROUS -->
 <section id="estrous">
   <div class="reveal">
     <div class="section-num">05 &mdash; Estrous-Timescale Rhythms</div>
@@ -469,21 +469,60 @@ footer strong { color: rgba(255,255,255,0.75); }
 
   <div class="reveal">
     <h3>Population-Level Rhythmicity</h3>
-    <p>When analyzed collectively, mice exhibited consistent lag-4 autocorrelation patterns at the population level. Vehicle and 5 mg/kg morphine groups showed positive cyclicity across both replicates, indicating repeatable rhythmic structure at approximately a four-day timescale consistent with estrous cycling.</p>
+    <p>When analyzed collectively, mice exhibited consistent lag-4 autocorrelation patterns at the population level. The vehicle group serves as a critical <strong>negative control</strong> for rhythm disruption: these animals received saline injections on the same schedule as morphine-treated mice, experiencing the same handling, injection stress, and cage disturbances &mdash; but no pharmacological agent. Both vehicle replicates showed significant positive lag-4 autocorrelation (r = 0.22 and r = 0.33, both p &lt; 0.05), confirming that the injection procedure and experimental perturbations alone do not disrupt estrous-timescale behavioral rhythms.</p>
+    <p>The 5 mg/kg group showed weakly positive cyclicity: Rep1 was significant (r = 0.18, p &lt; 0.05) while Rep2 was not (r = 0.04, n.s.), suggesting low-dose morphine partially attenuates but does not eliminate rhythmic structure. The 25 mg/kg condition showed a direction flip between replicates (r = 0.20 vs. r = &minus;0.13), indicating that high-dose morphine disrupts behavioral rhythmic structure. This dose-dependent gradient &mdash; from preserved rhythms in vehicle controls, to attenuated rhythms at low dose, to disrupted rhythms at high dose &mdash; provides evidence that morphine itself interferes with endogenous estrous-timescale behavioral organization.</p>
   </div>
 
-  <!-- FIGURE 3: Lag-4 Autocorrelation -->
+  <!-- Autocorrelation Table -->
   <div class="figure-block reveal">
-    <img src="fig_lag4_autocorrelation.png" alt="Group-level lag-4 autocorrelation comparing Rep1 and Rep2 across vehicle, dose5, and dose25 groups. Vehicle and dose5 show same-sign positive values across replicates, while dose25 shows opposite signs.">
+    <table class="autocorr-table">
+      <thead>
+        <tr>
+          <th>Dose</th>
+          <th>Rep1 r</th>
+          <th>Rep2 r</th>
+          <th>Pattern</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vehicle</td>
+          <td>0.22*</td>
+          <td>0.33*</td>
+          <td><span class="pattern-consistent">consistent positive</span></td>
+        </tr>
+        <tr>
+          <td>5 mg/kg</td>
+          <td>0.18*</td>
+          <td>0.04 (ns)</td>
+          <td><span class="pattern-weak">weak positive</span></td>
+        </tr>
+        <tr>
+          <td>25 mg/kg</td>
+          <td>0.20*</td>
+          <td>&minus;0.13 (ns)</td>
+          <td><span class="pattern-flip">direction flip</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="figure-caption">
+      <strong>Table 1 &mdash; Lag-4 Autocorrelation of Ultradian Signals</strong><br>
+      Population-level mean lag-4 autocorrelation across dose &times; replicate. * = p &lt; 0.05 via permutation testing; ns = not significant. Vehicle (negative control) shows consistent positive cyclicity across both replicates, establishing that experimental procedures alone do not disrupt rhythms. Morphine shows dose-dependent attenuation of rhythmic structure.
+    </div>
+  </div>
+
+  <!-- Figure 4: Lag-4 Autocorrelation -->
+  <div class="figure-block reveal">
+    <img src="fig_lag4_autocorrelation.png" alt="Group-level lag-4 autocorrelation comparing Rep1 and Rep2 across treatment groups">
     <div class="figure-caption">
       <strong>Figure 4 &mdash; Group-Level Lag-4 Autocorrelation: Rep1 vs. Rep2</strong><br>
-      Population-level mean lag-4 autocorrelation by treatment group and replicate. <em>Vehicle:</em> Both replicates show positive autocorrelation (+0.221, +0.338; both p &lt; 0.01), with same sign indicating genuine cyclicity. <em>Dose 5 mg/kg:</em> Both replicates again agree in sign (+0.097, +0.200; p &lt; 0.05), suggesting rhythms persist at low dose. <em>Dose 25 mg/kg:</em> Replicates show <span style="color:var(--warm);font-weight:600;">opposite signs</span> (+0.29 vs. &minus;0.117), indicating that high-dose morphine disrupts consistent rhythmic structure. Same sign = replicates agree; opposite sign = likely artifact of disruption.
+      <em>Vehicle (negative control):</em> Both replicates show significant positive autocorrelation (r = 0.22, 0.33; p &lt; 0.05), confirming injection procedures alone do not disrupt rhythms. <em>Dose 5 mg/kg:</em> Weakly positive &mdash; Rep1 significant (r = 0.18, p &lt; 0.05), Rep2 not (r = 0.04, n.s.). <em>Dose 25 mg/kg:</em> Direction flip between replicates (r = 0.20 vs. r = &minus;0.13), indicating high-dose morphine disrupts estrous-timescale behavioral organization.
     </div>
   </div>
 
   <div class="callout warn reveal">
-    <div class="callout-label">Morphine Disrupts Rhythms</div>
-    <p>The 25 mg/kg morphine condition showed inconsistent cyclicity between replicates, suggesting that high-dose morphine disrupts endogenous estrous-timescale behavioral organization. Rhythmic structure is weaker and appears disrupted compared to vehicle and low-dose conditions.</p>
+    <div class="callout-label">Dose-Dependent Rhythm Disruption</div>
+    <p>The dose-dependent gradient &mdash; from preserved rhythms in vehicle controls, to attenuated rhythms at 5 mg/kg, to disrupted rhythms with a direction flip at 25 mg/kg &mdash; supports the interpretation that morphine itself interferes with endogenous behavioral rhythms, rather than experimental procedures confounding the signal.</p>
   </div>
 
   <div class="reveal">
@@ -496,10 +535,11 @@ footer strong { color: rgba(255,255,255,0.75); }
     <p>Adding seven estrous features to the 24 baseline behavioral features slightly decreased average prediction accuracy (62.0% to 60.2%). The best model achieved 72.2% accuracy using baseline features alone, with no improvement from estrous metrics.</p>
     <div class="best-model">Strongest predictor: dark-phase locomotor activity (baseline behavior), not estrous phase.</div>
   </div>
+
   <div class="figure-block reveal">
-    <img src="fig_feature_importance.png" alt=" Feature Importance: Baseline Predictors of Morphine Response">
+    <img src="fig_feature_importance.png" alt="Feature Importance: Baseline Predictors of Morphine Response">
     <div class="figure-caption warm">
-      <strong>Figure 5 &mdash;  Feature Importance: Baseline Predictors of Morphine Response</strong><br>
+      <strong>Figure 5 &mdash; Feature Importance: Baseline Predictors of Morphine Response</strong><br>
       Dark-phase mean locomotor activity (dark_mean) emerges as the single strongest predictor of morphine sensitivity, followed by circadian mesor and plateau max. The top predictors are all baseline behavioral features. Notably, no estrous-derived features appear among the top 10, reinforcing that an animal's baseline behavioral phenotype, rather than its hormonal cycle phase, drives individual differences in drug response.
     </div>
   </div>
@@ -507,7 +547,7 @@ footer strong { color: rgba(255,255,255,0.75); }
 
 <div class="divider"><hr></div>
 
-<!-- ════════════════════ CONCLUSION ════════════════════ -->
+<!-- CONCLUSION -->
 <section id="conclusion">
   <div class="reveal">
     <div class="section-num">06 &mdash; Conclusion</div>
@@ -521,11 +561,11 @@ footer strong { color: rgba(255,255,255,0.75); }
     </div>
     <div class="conclusion-card teal-top">
       <h4>Population-Level Estrous Cyclicity</h4>
-      <p>Vehicle and 5 mg/kg groups show consistent positive lag-4 autocorrelation across both replicates, indicating repeatability at a ~4-day timescale consistent with estrous cycling.</p>
+      <p>Vehicle controls (negative control) show consistent positive lag-4 autocorrelation across both replicates, confirming estrous-timescale rhythms survive experimental procedures.</p>
     </div>
     <div class="conclusion-card warn-top">
-      <h4>Morphine Disrupts Rhythms</h4>
-      <p>25 mg/kg morphine disrupts this pattern, showing inconsistent cyclicity between replicates &mdash; high-dose opioids interfere with endogenous behavioral organization.</p>
+      <h4>Dose-Dependent Disruption</h4>
+      <p>Morphine disrupts rhythms in a dose-dependent manner: attenuated at 5 mg/kg, direction flip at 25 mg/kg &mdash; anchored by the preserved vehicle control baseline.</p>
     </div>
     <div class="conclusion-card purple-top">
       <h4>Label-Free Detection</h4>
@@ -533,10 +573,9 @@ footer strong { color: rgba(255,255,255,0.75); }
     </div>
   </div>
 
-
   <div class="callout reveal">
     <div class="callout-label">Bottom Line</div>
-    <p>Behavioral monitoring pipelines can reveal physiological rhythms without invasive measurements. While estrous-consistent rhythms are detectable in locomotor behavior, baseline behavioral phenotypes &mdash; not hormonal cycle phase &mdash; are what predict individual drug response. </p>
+    <p>Behavioral monitoring pipelines can reveal physiological rhythms without invasive measurements. While estrous-consistent rhythms are detectable in locomotor behavior, baseline behavioral phenotypes &mdash; not hormonal cycle phase &mdash; are what predict individual drug response.</p>
   </div>
 </section>
 
@@ -546,7 +585,39 @@ footer strong { color: rgba(255,255,255,0.75); }
   <p style="margin-top: 0.5rem; font-size: 0.7rem;">Reference: Smarr BL, Grant AD, Zucker I, Prendergast BJ, Kriegsfeld LJ. Sex differences in variability across timescales in BALB/c mice. <em>Biology of Sex Differences</em>, 2017;8:7.</p>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">ESC &times;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
 <script>
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.figure-block img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    const caption = img.closest('.figure-block').querySelector('.figure-caption strong');
+    lightboxCaption.textContent = caption ? caption.textContent : '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+lightbox.addEventListener('click', (e) => { if (e.target !== lightboxImg) closeLightbox(); });
+lightboxClose.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+// Nav hide on scroll
 let lastScroll = 0;
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
